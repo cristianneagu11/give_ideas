@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Give Ideas</string>
+    <string name="action_settings">Settings</string>
+    <string name="budgetText">Choose your budget:</string>
+    <string name="currency">Lei</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+</resources>

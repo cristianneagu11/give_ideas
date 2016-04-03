@@ -5,4 +5,5 @@
     <string name="currency">Lei</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="title_activity_filter">Choose categories</string>
 </resources>

@@ -1,5 +1,6 @@
 package neagucristian.giveideas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,11 +12,16 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.util.logging.Filter;
+
 public class MainActivity extends AppCompatActivity {
 
+    public final static String EXTRA_BUDGET = "com.neagucristian.giveideas.BUDGET";
+    public final static String EXTRA_SEX = "com.neagucristian.giveideas.SEX";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,23 +47,39 @@ public class MainActivity extends AppCompatActivity {
                 String currency = getResources().getString(R.string.currency);
                 budgetView.setText(Integer.toString(progressBudget) + " " + currency);
             }
+
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
         });
-
-
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Snackbar.make(view, "WIP!!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                startFilter(view);
             }
         });
+    }
+
+    public void startFilter(View view) {
+        Intent intent = new Intent(this, FilterActivity.class);
+        int budget = getBudget();
+        intent.putExtra(EXTRA_BUDGET, budget);
+        RadioButton r1 = (RadioButton) findViewById(R.id.male);
+        RadioButton r2 = (RadioButton) findViewById(R.id.female);
+        if(r1.isChecked())
+            intent.putExtra(EXTRA_SEX, "male");
+        if(r2.isChecked())
+            intent.putExtra(EXTRA_SEX, "female");
+        startActivity(intent);
     }
 
     public int getBudget() {
